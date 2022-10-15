@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/ReportAnimal.dart';
-
+import 'screens/SearchPet.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -102,10 +102,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),     MaterialButton(
+                color: Colors.blue,
+                child: const Text(
+                    "Search pets",
+                    style: TextStyle(
+                        color: Colors.white70, fontWeight: FontWeight.bold
+                    )
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SearchPetForm()),
+                  );
+                }
             ),
           ],
         ),
       ),
+
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -116,6 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+
+
     );
   }
 }

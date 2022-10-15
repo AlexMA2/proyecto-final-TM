@@ -93,6 +93,7 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
       ),
       body: Center(
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,19 +115,6 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                 ),
-                labelText: 'Nombre de Tu Mascota',
-              ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return 'Este campo es importante';
-                }
-              },
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
-                ),
                 labelText: 'Color de Pelo',
               ),
               validator: (value) {
@@ -135,13 +123,16 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                 }
               },
             ),
+
             TextFormField(
               decoration: const InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                 ),
                 labelText: 'Años',
-              ),
+              ),keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly],
               validator: (value) {
                 if (value != null && value.isEmpty) {
                   return 'Este campo es importante';
@@ -154,7 +145,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                 ),
                 labelText: 'Meses',
-              ),
+              ),keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly],
               validator: (value) {
                 if (value != null && value.isEmpty) {
                   return 'Este campo es importante';
@@ -167,19 +160,19 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
               elevation: 16,
               style: const TextStyle(color: Colors.deepPurple),
               underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
+                height: 2,
+                color: Colors.deepPurpleAccent,
               ),
               onChanged: (String? value) {
                 // This is called when the user selects an item.
-                  setState(() {
+                setState(() {
                   dropdownValue = value!;
                 });
               },
               items: razas_perros.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
+                  value: value,
+                  child: Text(value),
                 );
               }).toList(),
             ),
@@ -205,6 +198,24 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                 );
               }).toList(),
             ),
+            TextFormField(
+              decoration: const InputDecoration(
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                ),
+                labelText: 'Numero de contacto',
+
+              ), keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly],
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return 'Este campo es importante';
+                }
+              },
+            ),
+
+
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
