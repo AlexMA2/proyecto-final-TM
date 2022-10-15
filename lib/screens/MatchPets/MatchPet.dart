@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../MatchPets.dart';
+
 class MatchPet extends StatefulWidget {
-  const MatchPet({super.key});
+
+  final Quote datos;
+
+  const MatchPet({super.key, required this.datos });
+  // MatchPet({super.key, required this.imagen, required this.distrito, required this.descripcion});
 
   @override
   State<MatchPet> createState() => _MatchPetState();
 }
 
 class _MatchPetState extends State<MatchPet> {
+
+  String _imagen = "datos";
+  String _distrito = "";
+  String _direccion = "";
+  
+  Quote? datos;
+
+
+
   @override
   Widget build(BuildContext context) {
+
+  print(datos);
+
+
     return Container(
             child: Column(
               children: [
@@ -24,7 +43,7 @@ class _MatchPetState extends State<MatchPet> {
                     children: [
                       const Image(
                         image: NetworkImage(
-                          'https://estaticos.muyinteresante.es/uploads/images/gallery/6124cf315cafe8c3101f8bab/perro_redes.jpg',
+                          "https://estaticos.muyinteresante.es/uploads/images/gallery/6124cf315cafe8c3101f8bab/perro_redes.jpg",
                         ),
                       ),
                       const Text(
