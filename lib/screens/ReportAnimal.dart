@@ -122,6 +122,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Color de Pelo',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),
                 validator: (value) {
                   if (value != null && value.isEmpty) {
@@ -136,6 +139,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Años',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
@@ -151,6 +157,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Meses',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
@@ -210,7 +219,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Numero de contacto',
-
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ), keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
