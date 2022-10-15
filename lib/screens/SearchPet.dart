@@ -169,13 +169,23 @@ class SearchPetFormState extends State<SearchPetForm> {
                   }
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: 'aaa',
+                  hintStyle: TextStyle(
+                      color: Colors.black
                   ),
                   labelText: 'Nombre de Tu Mascota',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),
                 validator: (value) {
@@ -185,13 +195,23 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
                   ),
                   labelText: 'Color de Pelo',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),
                 validator: (value) {
@@ -201,15 +221,27 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
                   ),
                   labelText: 'Años',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
-                ),keyboardType: TextInputType.number,
+
+                ),
+                keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
                 validator: (value) {
@@ -219,13 +251,23 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
                   ),
                   labelText: 'Meses',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
@@ -236,53 +278,83 @@ class SearchPetFormState extends State<SearchPetForm> {
                   }
                 },
               ),
-              DropdownButton<String>(
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white, //<-- SEE HERE
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0)
                 ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: razas_perros.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black, // <-- SEE HERE
+                  ),
+                  elevation: 16,
+                  isExpanded: true,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  dropdownColor: Colors.white,
+                  items: razas_perros.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ),
-              DropdownButton<String>(
-                value: dropdownValueDistritos,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white, //<-- SEE HERE
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
                 ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: lista_distritos.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                child:DropdownButton<String>(
+                  value: dropdownValueDistritos,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black, // <-- SEE HERE
+                  ),
+                  elevation: 16,
+                  isExpanded: true,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  dropdownColor: Colors.white,
+                  items: lista_distritos.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
+
+                  style: ElevatedButton.styleFrom(
+                   backgroundColor: Color.fromRGBO(158, 42, 43, 1),
+                    elevation: 5,
+
+                  ),
                   onPressed: () {
                     // devolverá true si el formulario es válido, o falso si
                     // el formulario no es válido.
@@ -292,7 +364,7 @@ class SearchPetFormState extends State<SearchPetForm> {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Processing Data')));
                     }
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Submit', style: TextStyle(fontSize: 30, color: Colors.white),),
                 ),
               ),
             ],

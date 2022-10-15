@@ -121,13 +121,23 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   }
               ),
               TextFormField(
+                 style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
                   ),
                   labelText: 'Color de Pelo',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),
                 validator: (value) {
@@ -136,15 +146,54 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   }
                 },
               ),
-
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
                   ),
-                  labelText: 'Años',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
+                  ),
+                  labelText: 'Años estimados',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
+                  ),
+
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly],
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return 'Este campo es importante';
+                  }
+                },
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.black),
+                decoration: const InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
+                  ),
+                  labelText: 'Meses estimados',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
@@ -155,14 +204,92 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   }
                 },
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.white, //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0)
+                ),
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black, // <-- SEE HERE
                   ),
-                  labelText: 'Meses',
+                  elevation: 16,
+                  isExpanded: true,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  dropdownColor: Colors.white,
+                  items: razas_perros.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white, //<-- SEE HERE
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                ),
+                child:DropdownButton<String>(
+                  value: dropdownValueDistritos,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black, // <-- SEE HERE
+                  ),
+                  elevation: 16,
+                  isExpanded: true,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  dropdownColor: Colors.white,
+                  items: lista_distritos.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+              TextFormField(
+                style: TextStyle(color: Colors.black),
+                decoration: const InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  ),
+                  hintText: '',
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1)
+                  ),
+                  labelText: 'Número de contacto',
                   labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
                   ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
@@ -173,69 +300,6 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   }
                 },
               ),
-              DropdownButton<String>(
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
-                ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: razas_perros.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              DropdownButton<String>(
-                value: dropdownValueDistritos,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
-                ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: lista_distritos.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
-                  ),
-                  labelText: 'Numero de contacto',
-                  labelStyle: TextStyle(
-                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
-                  ),
-                ), keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly],
-                validator: (value) {
-                  if (value != null && value.isEmpty) {
-                    return 'Este campo es importante';
-                  }
-                },
-              ),
-
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
