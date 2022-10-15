@@ -30,14 +30,60 @@ class _MatchPetsState extends State<MatchPets> {
             ),
             ),
             Container(
-              margin: const EdgeInsets.all(30.0),
+              margin: const EdgeInsets.all(25.0),
               child: const Text(
                 'Las siguientes fotos fueron subidas por personas que reportan mascotas y una inteligencia artificial calcula la similitud de estas fotos con la foto y los datos proporcionados.',
                 textAlign: TextAlign.center,
                 style: TextStyle( color: Colors.white)),
             ),
-            MatchPet(),
-            MatchPet(),
+            const MatchPet(),
+            const MatchPet(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 20,right:20),
+                  child: TextButton(
+                    child: const Text(
+                      'ATRAS',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF09E2A2B))),
+                    onPressed: (){},
+                  )
+                ),
+                const Spacer(),
+                Container(
+                  margin: const EdgeInsets.only(left: 20,right:20),
+                  child: TextButton(
+                    child: const Text(
+                      'SALTAR',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF09E2A2B))),
+                    onPressed: (){},
+                  )
+                ),
+                const Spacer(),
+                Container(
+                  margin: const EdgeInsets.only(left: 20,right:20),
+                  child: TextButton(
+                    child: const Text(
+                      'SIGUIENTE',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF09E2A2B))),
+                    onPressed: (){},
+                  )
+                ),
+              ],
+            ),
           ],
         ),
       )

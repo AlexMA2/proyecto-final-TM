@@ -56,7 +56,10 @@ class _MatchPetState extends State<MatchPet> {
                                 ),
                                 label: const Text(
                                   'No es',
-                                  style: TextStyle(color: Colors.white)
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18
+                                  )
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.red
@@ -75,7 +78,10 @@ class _MatchPetState extends State<MatchPet> {
                                 ),
                                 label: const Text(
                                   'Si es',
-                                  style: TextStyle(color: Colors.white)
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18
+                                  )
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.green

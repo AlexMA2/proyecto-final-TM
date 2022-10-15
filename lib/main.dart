@@ -73,10 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                 color: Colors.red
               ),
-              child: Text('Header'),
+              child: Text('Navegacion'),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.home
               ),
               title: const Text('Menu'),
