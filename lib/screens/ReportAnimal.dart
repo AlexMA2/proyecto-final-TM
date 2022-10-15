@@ -97,8 +97,14 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            const Text(
+              "¡Busca a tus mascota!",
+                style: TextStyle(
+                    color: Color.fromRGBO(84, 11, 14, 1), fontWeight: FontWeight.bold, fontSize: 30.0
+                )
+            ),
             MaterialButton(
-                color: Colors.blue,
+                color:  Color.fromRGBO(84, 11, 14, 1),,
                 child: const Text(
                     "Pick Image from Gallery",
                     style: TextStyle(
@@ -217,7 +223,7 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Processing Data')));
                   }
                 },
-                child: const Text('Submit'),
+                child: const Text('Buscar'),
               ),
             ),
           ],
