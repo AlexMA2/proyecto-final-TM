@@ -105,7 +105,7 @@ class SearchPetFormState extends State<SearchPetForm> {
               ),
               ListTile(
                 leading: const Icon(
-                    Icons.home
+                    Icons.report_gmailerrorred_outlined
                 ),
                 title: const Text('Reportar '),
                 onTap: (){
@@ -117,7 +117,7 @@ class SearchPetFormState extends State<SearchPetForm> {
               ),
               ListTile(
                 leading: const Icon(
-                    Icons.home
+                    Icons.search
                 ),
                 title: const Text('Buscar '),
                 onTap: (){
@@ -129,7 +129,7 @@ class SearchPetFormState extends State<SearchPetForm> {
               ),
               ListTile(
                 leading: const Icon(
-                    Icons.home
+                    Icons.pets
                 ),
                 title: const Text('Match'),
                 onTap: (){

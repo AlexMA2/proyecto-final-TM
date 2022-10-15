@@ -16,7 +16,6 @@ class _MatchPetsState extends State<MatchPets> {
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
-      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: const Text('PawClues'),
       ),
@@ -32,7 +31,7 @@ class _MatchPetsState extends State<MatchPets> {
             ),
             ListTile(
               leading: const Icon(
-                  Icons.home
+                  Icons.report_gmailerrorred_outlined
               ),
               title: const Text('Reportar '),
               onTap: (){
@@ -44,7 +43,7 @@ class _MatchPetsState extends State<MatchPets> {
             ),
             ListTile(
               leading: const Icon(
-                  Icons.home
+                  Icons.search
               ),
               title: const Text('Buscar '),
               onTap: (){
@@ -56,7 +55,7 @@ class _MatchPetsState extends State<MatchPets> {
             ),
             ListTile(
               leading: const Icon(
-                  Icons.home
+                  Icons.pets
               ),
               title: const Text('Match'),
               onTap: (){

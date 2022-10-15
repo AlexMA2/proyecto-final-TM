@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.home
+                Icons.report_gmailerrorred_outlined
               ),
               title: const Text('Reportar '),
               onTap: (){
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               leading: const Icon(
-                  Icons.home
+                  Icons.search
               ),
               title: const Text('Buscar '),
               onTap: (){
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               leading: const Icon(
-                  Icons.home
+                  Icons.pets
               ),
               title: const Text('Match'),
               onTap: (){

@@ -13,8 +13,8 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
+    return const Scaffold(
+      backgroundColor: Color.fromRGBO(255, 243, 176, 1),
       body: Text('Principal'),
     );
   }
