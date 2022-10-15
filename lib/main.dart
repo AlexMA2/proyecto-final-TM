@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_tm/screens/principal.dart';
 import 'screens/MatchPets.dart';
 import 'screens/ReportAnimal.dart';
 import 'screens/SearchPet.dart';
@@ -62,9 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      body: const SingleChildScrollView(
-        child: MatchPets(),
-      ),
+      body: Principal(),
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
