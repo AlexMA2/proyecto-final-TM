@@ -68,11 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.red
-              ),
-              child: Text('Navegacion'),
+            const SizedBox(
+                height : 100.0, 
+                child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.red
+                  ),
+                  child: Text('Navegacion'),
+                ),
             ),
             ListTile(
               leading: const Icon(

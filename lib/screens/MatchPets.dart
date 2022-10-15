@@ -16,56 +16,63 @@ class _MatchPetsState extends State<MatchPets> {
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: const Text('PawClues'),
       ),
-      endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                  color: Colors.red
+      endDrawer: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.50,
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const SizedBox(
+                height : 100.0, 
+                child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.red
+                  ),
+                  child: Text('Navegacion'),
+                ),
               ),
-              child: Text('Navegacion'),
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.report_gmailerrorred_outlined
+              ListTile(
+                leading: const Icon(
+                    Icons.home
+                ),
+                title: const Text('Reportar '),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
+                  );
+                },
               ),
-              title: const Text('Reportar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.search
+              ListTile(
+                leading: const Icon(
+                    Icons.home
+                ),
+                title: const Text('Buscar '),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SearchPetForm()),
+                  );
+                },
               ),
-              title: const Text('Buscar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchPetForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.pets
+              ListTile(
+                leading: const Icon(
+                    Icons.home
+                ),
+                title: const Text('Match'),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MatchPets()),
+                  );
+                },
               ),
-              title: const Text('Match'),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MatchPets()),
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(

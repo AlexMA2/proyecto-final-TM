@@ -97,11 +97,14 @@ class SearchPetFormState extends State<SearchPetForm> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
+              const SizedBox(
+                height : 100.0, 
+                child: DrawerHeader(
+                  decoration: BoxDecoration(
                     color: Colors.red
+                  ),
+                  child: Text('Navegacion'),
                 ),
-                child: Text('Navegacion'),
               ),
               ListTile(
                 leading: const Icon(
