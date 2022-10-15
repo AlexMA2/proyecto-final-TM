@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_tm/screens/MatchPets.dart';
+import 'screens/MatchPets.dart';
+import 'screens/ReportAnimal.dart';
+import 'screens/SearchPet.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme(
+        colorScheme: const ColorScheme(
           primary: Color(0xFF09E2A2B),
           onBackground: Colors.white,
           onError: Colors.yellow,
@@ -22,9 +24,7 @@ class MyApp extends StatelessWidget {
           background: Colors.yellow,
           secondary: Colors.purple,
           surface: Color(0xFF09E2A2B),
-          secondaryVariant: Colors.white,
           error: Colors.red,
-          primaryVariant: Color(0xFF0A0E21),
           onPrimary: Color(0xFF0A0E21),
           brightness: Brightness.dark,
         )
@@ -79,11 +79,38 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(
                 Icons.home
               ),
-              title: const Text('Menu'),
+              title: const Text('Reportar '),
               onTap: (){
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
+                );
               },
-            )
+            ),
+            ListTile(
+              leading: const Icon(
+                  Icons.home
+              ),
+              title: const Text('Buscar '),
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchPetForm()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                  Icons.home
+              ),
+              title: const Text('Match'),
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MatchPets()),
+                );
+              },
+            ),
           ],
         ),
       ),
