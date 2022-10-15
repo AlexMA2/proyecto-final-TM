@@ -142,7 +142,8 @@ class SearchPetFormState extends State<SearchPetForm> {
             ],
           ),
         ),
-        body: Center(
+        body: Container(
+          padding: EdgeInsets.all(25.0),
           child: Column(
 
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

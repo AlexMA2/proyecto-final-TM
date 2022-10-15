@@ -91,7 +91,8 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
         appBar: AppBar(
           title: const Text('PawClues'),
         ),
-        body: Center(
+        body: Container(
+          padding: EdgeInsets.all(25.0),
           child: Column(
 
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,15 +104,18 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   style: TextStyle(
                       color: Color.fromRGBO(84, 11, 14, 1), fontWeight: FontWeight.bold, fontSize: 30.0
                   )
+
               ),
               MaterialButton(
                   color: Colors.blue,
                   child: const Text(
                       "Pick Image from Gallery",
                       style: TextStyle(
-                          color: Colors.white70, fontWeight: FontWeight.bold
+                          color: Colors.white70, fontWeight: FontWeight.bold,
                       )
+
                   ),
+
                   onPressed: () {
                     pickImage();
                   }
@@ -250,7 +254,8 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
               ),
             ],
           ),
-        )
+        ),
+
     );
 
   }
