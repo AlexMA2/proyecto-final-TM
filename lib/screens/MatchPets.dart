@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/screens/MatchPets/MatchPet.dart';
 import 'package:proyecto_final_tm/screens/ReportAnimal.dart';
 import 'package:proyecto_final_tm/screens/SearchPet.dart';
@@ -42,74 +43,18 @@ class _MatchPetsState extends State<MatchPets> {
 
     int cantidadMatch = matchPerros.length;
 
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: const Text('PawClues'),
       ),
-      endDrawer: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.50,
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const SizedBox(
-                height : 100.0, 
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.red
-                  ),
-                  child: Text('Navegacion'),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(
-                    Icons.report_gmailerrorred_outlined
-                ),
-                title: const Text('Reportar '),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                    Icons.search
-                ),
-                title: const Text('Buscar '),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SearchPetForm()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                    Icons.pets
-                ),
-                title: const Text('Match'),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MatchPets()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      endDrawer: const DrawerNav(),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/images/patitas.jpg"), fit: BoxFit.cover,)
+          image: DecorationImage(image: AssetImage("assets/images/patitas.jpg"),fit: BoxFit.cover,)
         ),
         child: ListView(
-
           children: [
             Container(
               margin: const EdgeInsets.all(25.0),

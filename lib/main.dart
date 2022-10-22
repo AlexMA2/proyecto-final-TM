@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_tm/screens/principal.dart';
+import 'package:proyecto_final_tm/screens/DrawerNav.dart';
+import 'package:proyecto_final_tm/screens/Principal.dart';
 import 'screens/MatchPets.dart';
 import 'screens/ReportAnimal.dart';
 import 'screens/SearchPet.dart';
@@ -60,62 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-
-        title: Text(widget.title),
+        title: Text('PawClues'),
       ),
+      endDrawer: DrawerNav(),
       body: Principal(),
-      endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const SizedBox(
-                height : 100.0, 
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.red
-                  ),
-                  child: Text('Navegacion'),
-                ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.report_gmailerrorred_outlined
-              ),
-              title: const Text('Reportar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.search
-              ),
-              title: const Text('Buscar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchPetForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.pets
-              ),
-              title: const Text('Match'),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MatchPets()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
