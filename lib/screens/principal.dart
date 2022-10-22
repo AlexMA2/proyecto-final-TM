@@ -8,7 +8,7 @@ import 'ReportAnimal.dart';
 import 'SearchPet.dart';
 
 class Principal extends StatefulWidget {
-  const Principal({super.key, required this.title});
+  const Principal({super.key, this.title = "PawClues"});
   final String title;
   @override
   State<Principal> createState() => _PrincipalState();
@@ -46,6 +46,10 @@ class _PrincipalState extends State<Principal> {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 243, 176, 1),
+      appBar: AppBar(
+        title: const Text('PawCluess'),
+      ),
+      endDrawer: DrawerNav(),
       body: Container(
         height: 700,
         width: 600,

@@ -61,6 +61,7 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
         appBar: AppBar(
           title: const Text('PawCluess'),
         ),
+        endDrawer: DrawerNav(),
         body: Form(
           key: _formKey,
           child: ListView(
