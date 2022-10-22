@@ -11,7 +11,6 @@ const List<String> lista_distritos = <String>[
   "CIENEGUILLA",
   "COMAS",
   "EL AGUSTINO",
-  "EL AGUSTINO",
   "INDEPENDENCIA",
   "JESUS MARIA",
   "LA MOLINA",

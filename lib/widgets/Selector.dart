@@ -35,9 +35,7 @@ class SelectorState extends State<Selector> {
           ),
           onChanged: (String? value) {
             if (value != null) {
-              setState(() {
-                _valueSelected = value;
-              });
+
               widget.onChange(value);
             }
           },
