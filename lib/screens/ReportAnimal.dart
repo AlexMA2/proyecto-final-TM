@@ -91,7 +91,8 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
         appBar: AppBar(
           title: const Text('PawClues'),
         ),
-        body: Center(
+        body: Container(
+          padding: EdgeInsets.all(25.0),
           child: Column(
 
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,15 +104,18 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   style: TextStyle(
                       color: Color.fromRGBO(84, 11, 14, 1), fontWeight: FontWeight.bold, fontSize: 30.0
                   )
+
               ),
               MaterialButton(
                   color: Colors.blue,
                   child: const Text(
                       "Pick Image from Gallery",
                       style: TextStyle(
-                          color: Colors.white70, fontWeight: FontWeight.bold
+                          color: Colors.white70, fontWeight: FontWeight.bold,
                       )
+
                   ),
+
                   onPressed: () {
                     pickImage();
                   }
@@ -122,6 +126,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Color de Pelo',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),
                 validator: (value) {
                   if (value != null && value.isEmpty) {
@@ -136,6 +143,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Años',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
@@ -151,6 +161,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Meses',
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ),keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
@@ -210,7 +223,9 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     borderSide: BorderSide(color: Color.fromRGBO(62, 16, 17, 1)),
                   ),
                   labelText: 'Numero de contacto',
-
+                  labelStyle: TextStyle(
+                    color: Color.fromRGBO(62, 16, 17, 1), //<-- SEE HERE
+                  ),
                 ), keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly],
@@ -239,7 +254,8 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
               ),
             ],
           ),
-        )
+        ),
+
     );
 
   }
