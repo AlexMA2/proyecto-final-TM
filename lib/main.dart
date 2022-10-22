@@ -30,89 +30,13 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         )
       ),
-      home: const MyHomePage(title: 'PawClues'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-
-        title: Text(widget.title),
-      ),
-      body: Principal(),
-      endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.red
-              ),
-              child: Text('Navegacion'),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.home
-              ),
-              title: const Text('Reportar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.home
-              ),
-              title: const Text('Buscar '),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchPetForm()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                  Icons.home
-              ),
-              title: const Text('Match'),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MatchPets()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Principal(title: "PawClues"),
+        '/searchPet': (context) => const SearchPetForm(),
+        '/reportPet':  (context) => const ReportAnimalForm(),
+        '/matching':  (context) => const MatchPets(),
+      },
     );
   }
 }

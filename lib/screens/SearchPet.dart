@@ -3,56 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:proyecto_final_tm/constants/SelectorsData.dart';
+import 'package:proyecto_final_tm/widgets/Selector.dart';
+import 'package:proyecto_final_tm/widgets/SubmitButton.dart';
 import 'MatchPets.dart';
 import 'ReportAnimal.dart';
-const List<String> razas_perros = <String>[ 'Sin raza', 'Affenpinscher', 'Afghan Hound', 'African Hunting Dog', 'Airedale Terrier', 'Akbash Dog', 'Akita', 'Alapaha Blue Blood Bulldog', 'Alaskan Husky', 'Alaskan Malamute', 'American Bulldog', 'American Bully', 'American Eskimo Dog', 'American Eskimo Dog (Miniature)', 'American Foxhound', 'American Pit Bull Terrier', 'American Staffordshire Terrier', 'American Water Spaniel', 'Anatolian Shepherd Dog', 'Appenzeller Sennenhund', 'Australian Cattle Dog', 'Australian Kelpie', 'Australian Shepherd', 'Australian Terrier', 'Azawakh', 'Barbet', 'Basenji', 'Basset Bleu de Gascogne', 'Basset Hound', 'Beagle', 'Bearded Collie', 'Beauceron', 'Bedlington Terrier', 'Belgian Malinois', 'Belgian Tervuren', 'Bernese Mountain Dog', 'Bichon Frise', 'Black and Tan Coonhound', 'Bloodhound', 'Bluetick Coonhound', 'Boerboel', 'Border Collie', 'Border Terrier', 'Boston Terrier', 'Bouvier des Flandres', 'Boxer', 'Boykin Spaniel', 'Bracco Italiano', 'Briard', 'Brittany', 'Bull Terrier', 'Bull Terrier (Miniature)', 'Bullmastiff', 'Cairn Terrier', 'Cane Corso', 'Cardigan Welsh Corgi', 'Catahoula Leopard Dog', 'Caucasian Shepherd (Ovcharka)', 'Cavalier King Charles Spaniel', 'Chesapeake Bay Retriever', 'Chinese Crested', 'Chinese Shar-Pei', 'Chinook', 'Chow Chow', 'Clumber Spaniel', 'Cocker Spaniel', 'Cocker Spaniel (American)', 'Coton de Tulear', 'Dalmatian', 'Doberman Pinscher', 'Dogo Argentino', 'Dutch Shepherd', 'English Setter', 'English Shepherd', 'English Springer Spaniel', 'English Toy Spaniel', 'English Toy Terrier', 'Eurasier', 'Field Spaniel', 'Finnish Lapphund', 'Finnish Spitz', 'French Bulldog', 'German Pinscher', 'German Shepherd Dog', 'German Shorthaired Pointer', 'Giant Schnauzer', 'Glen of Imaal Terrier', 'Golden Retriever', 'Gordon Setter', 'Great Dane', 'Great Pyrenees', 'Greyhound', 'Griffon Bruxellois', 'Harrier', 'Havanese', 'Irish Setter', 'Irish Terrier', 'Irish Wolfhound', 'Italian Greyhound', 'Japanese Chin', 'Japanese Spitz', 'Keeshond', 'Komondor', 'Kooikerhondje', 'Kuvasz', 'Labrador Retriever', 'Lagotto Romagnolo', 'Lancashire Heeler', 'Leonberger', 'Lhasa Apso', 'Maltese', 'Miniature American Shepherd', 'Miniature Pinscher', 'Miniature Schnauzer', 'Newfoundland', 'Norfolk Terrier', 'Norwich Terrier', 'Nova Scotia Duck Tolling Retriever', 'Old English Sheepdog', 'Olde English Bulldogge', 'Papillon', 'Pekingese', 'Pembroke Welsh Corgi', 'Perro de Presa Canario', 'Pharaoh Hound', 'Plott', 'Pomeranian', 'Poodle (Miniature)', 'Poodle (Toy)', 'Pug', 'Puli', 'Pumi', 'Rat Terrier', 'Redbone Coonhound', 'Rhodesian Ridgeback', 'Rottweiler', 'Russian Toy', 'Saint Bernard', 'Saluki', 'Samoyed', 'Schipperke', 'Scottish Deerhound', 'Scottish Terrier', 'Shetland Sheepdog', 'Shiba Inu', 'Shih Tzu', 'Shiloh Shepherd', 'Siberian Husky', 'Silky Terrier', 'Smooth Fox Terrier', 'Soft Coated Wheaten Terrier', 'Spanish Water Dog', 'Spinone Italiano', 'Staffordshire Bull Terrier', 'Standard Schnauzer', 'Swedish Vallhund', 'Thai Ridgeback', 'Tibetan Mastiff', 'Tibetan Spaniel', 'Tibetan Terrier', 'Toy Fox Terrier', 'Treeing Walker Coonhound', 'Vizsla', 'Weimaraner', 'Welsh Springer Spaniel', 'West Highland White Terrier', 'Whippet', 'White Shepherd', 'Wire Fox Terrier', 'Wirehaired Pointing Griffon', 'Wirehaired Vizsla', 'Xoloitzcuintli', 'Yorkshire Terrier' ];
+import 'package:proyecto_final_tm/theme/InputDecoration.dart';
 
-const List<String> lista_distritos = <String>[
-  "ANCON",
-  "ATE",
-  "BARRANCO",
-  "BREÑA",
-  "CARABAYLLO",
-  "CHACLACAYO",
-  "CHORRILLOS",
-  "CIENEGUILLA",
-  "COMAS",
-  "EL AGUSTINO",
-  "EL AGUSTINO",
-  "INDEPENDENCIA",
-  "JESUS MARIA",
-  "LA MOLINA",
-  "LA VICTORIA",
-  "LIMA",
-  "LINCE",
-  "LOS OLIVOS",
-  "LURIGANCHO",
-  "LURIN",
-  "MAGDALENA DEL MAR",
-  "MIRAFLORES",
-  "PACHACAMAC",
-  "PUCUSANA",
-  "PUEBLO LIBRE",
-  "PUENTE PIEDRA",
-  "PUNTA HERMOSA",
-  "PUNTA NEGRA",
-  "RIMAC",
-  "SAN BARTOLO",
-  "SAN BORJA",
-  "SAN ISIDRO",
-  "SAN JUAN DE LURIGANCHO",
-  "SAN JUAN DE MIRAFLORES",
-  "SAN LUIS",
-  "SAN MARTIN DE PORRES",
-  "SAN MIGUEL",
-  "SANTA ANITA",
-  "SANTA MARIA DEL MAR",
-  "SANTA ROSA",
-  "SANTIAGO DE SURCO",
-  "SURQUILLO",
-  "VILLA EL SALVADOR",
-  "VILLA MARIA DEL TRIUNFO"
-];
 
 class SearchPetForm extends StatefulWidget {
   const SearchPetForm({super.key});
@@ -82,11 +39,13 @@ class SearchPetFormState extends State<SearchPetForm> {
     }
   }
 
+  final textStyle = const TextStyle(color: Colors.black);
+  String selectedValueDogBreed = razas_perros.first;
+  String selectedValueDistrictList = lista_distritos.first;
   @override
   Widget build(BuildContext context) {
     // Crea un widget Form usando el _formKey que creamos anteriormente
-    String dropdownValue = razas_perros.first;
-    String dropdownValueDistritos = lista_distritos.first;
+
     return Scaffold(
         backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
         key: _formKey,
@@ -169,25 +128,8 @@ class SearchPetFormState extends State<SearchPetForm> {
                   }
               ),
               TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
-                  ),
-                  hintText: 'aaa',
-                  hintStyle: TextStyle(
-                      color: Colors.black
-                  ),
-                  labelText: 'Nombre de Tu Mascota',
-                  labelStyle: TextStyle(
-                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
-                  ),
-                ),
+                style: textStyle,
+                decoration: inputDecoration,
                 validator: (value) {
                   if (value != null && value.isEmpty) {
                     return 'Este campo es importante';
@@ -195,25 +137,8 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
-                  ),
-                  hintText: '',
-                  hintStyle: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 1)
-                  ),
-                  labelText: 'Color de Pelo',
-                  labelStyle: TextStyle(
-                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
-                  ),
-                ),
+                style: textStyle,
+                decoration: inputDecoration,
                 validator: (value) {
                   if (value != null && value.isEmpty) {
                     return 'Este campo es importante';
@@ -221,29 +146,10 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
-                  ),
-                  hintText: '',
-                  hintStyle: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 1)
-                  ),
-                  labelText: 'Años',
-                  labelStyle: TextStyle(
-                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
-                  ),
-
-                ),
+                style: textStyle,
+                decoration: inputDecoration,
                 keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly],
+                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                 validator: (value) {
                   if (value != null && value.isEmpty) {
                     return 'Este campo es importante';
@@ -251,122 +157,27 @@ class SearchPetFormState extends State<SearchPetForm> {
                 },
               ),
               TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
-                  ),
-                  hintText: '',
-                  hintStyle: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 1)
-                  ),
-                  labelText: 'Meses',
-                  labelStyle: TextStyle(
-                    color: Color.fromRGBO(158, 42, 43, 1), //<-- SEE HERE
-                  ),
-                ),keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly],
+                style: textStyle,
+                decoration: inputDecoration,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                 validator: (value) {
                   if (value != null && value.isEmpty) {
                     return 'Este campo es importante';
                   }
                 },
               ),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white, //<-- SEE HERE
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0)
-                ),
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(
-                    Icons.arrow_drop_down,
-                    color: Colors.black, // <-- SEE HERE
-                  ),
-                  elevation: 16,
-                  isExpanded: true,
-                  style: const TextStyle(color: Colors.black),
-                  underline: Container(
-                    height: 2,
-                  ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownValue = value!;
-                    });
-                  },
-                  dropdownColor: Colors.white,
-                  items: razas_perros.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+              Selector(
+                  values: razas_perros,
+                  valueSelected: selectedValueDogBreed,
+                  onChange: (value) => { setState(() => selectedValueDogBreed = value)},
               ),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white, //<-- SEE HERE
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Color.fromRGBO(158, 42, 43, 1), width: 2.0),
-                ),
-                child:DropdownButton<String>(
-                  value: dropdownValueDistritos,
-                  icon: const Icon(
-                    Icons.arrow_drop_down,
-                    color: Colors.black, // <-- SEE HERE
-                  ),
-                  elevation: 16,
-                  isExpanded: true,
-                  style: const TextStyle(color: Colors.black),
-                  underline: Container(
-                    height: 2,
-                  ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownValue = value!;
-                    });
-                  },
-                  dropdownColor: Colors.white,
-                  items: lista_distritos.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+              Selector(
+                  values: lista_distritos,
+                  valueSelected: selectedValueDistrictList,
+                  onChange: (value) => {setState(() => selectedValueDistrictList = value)},
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-
-                  style: ElevatedButton.styleFrom(
-                   backgroundColor: Color.fromRGBO(158, 42, 43, 1),
-                    elevation: 5,
-
-                  ),
-                  onPressed: () {
-                    // devolverá true si el formulario es válido, o falso si
-                    // el formulario no es válido.
-
-                    if (_formKey.currentState!.validate()) {
-                      // Si el formulario es válido, queremos mostrar un Snackbar
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Processing Data')));
-                    }
-                  },
-                  child: const Text('Submit', style: TextStyle(fontSize: 30, color: Colors.white),),
-                ),
-              ),
+              SubmitButton(formState: _formKey.currentState, goTo: '/matching')
             ],
           ),
         )
