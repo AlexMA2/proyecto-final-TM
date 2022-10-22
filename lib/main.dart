@@ -31,40 +31,14 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         )
       ),
-      home: const MyHomePage(title: 'PawClues'),
-    );
-  }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text('PawClues'),
-      ),
-      endDrawer: DrawerNav(),
-      body: Principal(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Principal(),
+        '/searchPet': (context) => const SearchPetForm(),
+        '/reportPet':  (context) => const ReportAnimalForm(),
+        '/matching':  (context) => const MatchPets(),
+      },
     );
   }
 }
