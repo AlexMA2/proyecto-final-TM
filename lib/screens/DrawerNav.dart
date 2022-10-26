@@ -23,7 +23,19 @@ class _DrawerNavState extends State<DrawerNav> {
             child: ListView(
             padding: EdgeInsets.zero,
             children: [
+              const SizedBox(
+                height : 150.0,
+                child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 109, 16, 20)
+                  ),
+                  child: Image(
+                    image: AssetImage("assets/images/pawclueslogo.png")
+                  ),
+                ),
+              ),
               Container(
+                margin: EdgeInsets.only(top:0),
                 color: Color.fromARGB(255, 109, 16, 20),
                 child:
                 const Padding(
@@ -38,18 +50,6 @@ class _DrawerNavState extends State<DrawerNav> {
                     ),
                   ),
                 )
-              ),
-              const SizedBox(
-                height : 100.0,
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/logo-PawClues.png"),
-                    ),
-                    color: Color.fromARGB(255, 109, 16, 20)
-                  ),
-                  child: Text(''),
-                ),
               ),
               ListTile(
                 leading: const Icon(
@@ -67,6 +67,7 @@ class _DrawerNavState extends State<DrawerNav> {
                     context,
                     MaterialPageRoute(builder: (context) => const
                     MyHomePage(title: 'Principal')),
+                    // MyHomePage(title: 'Principal')),
                   );
                 },
               ),

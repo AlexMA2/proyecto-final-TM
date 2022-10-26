@@ -45,15 +45,12 @@ class _MatchPetsState extends State<MatchPets> {
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
-      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: const Text('PawClues'),
+          automaticallyImplyLeading: false,
       ),
       endDrawer: const DrawerNav(),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/images/patitas.jpg"),fit: BoxFit.cover,)
-        ),
         child: ListView(
           children: [
             Container(
@@ -64,17 +61,23 @@ class _MatchPetsState extends State<MatchPets> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
-                  color: Colors.yellow
+                  color: Colors.black
                 ),
               ),
               )
             ),
             Container(
-              margin: const EdgeInsets.all(25.0),
+              margin: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               child: const Text(
                 'Las siguientes fotos fueron subidas por personas que reportan mascotas y una inteligencia artificial calcula la similitud de estas fotos con la foto y los datos proporcionados.',
                 textAlign: TextAlign.center,
-                style: TextStyle( color: Colors.yellow, fontWeight: FontWeight.bold, fontSize: 15)),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17
+                )
+              ),
             ),
             ...matchPerros.map((e) => MatchPet(datos : e)),
             Row(

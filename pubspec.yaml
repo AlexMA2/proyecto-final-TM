@@ -80,6 +80,10 @@ flutter:
     - family: PTSansNarrow
       fonts:
         - asset: fonts/PTSansNarrow-Regular.ttf
+
+    - family: FuturaBoldCondensend
+      fonts:
+        - asset: fonts/FuturaBoldCondensed_BT.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

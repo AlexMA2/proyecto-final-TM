@@ -93,6 +93,7 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
         key: _formKey,
         appBar: AppBar(
           title: const Text('PawClues'),
+          automaticallyImplyLeading: false,
         ),
         body: Container(
           padding: EdgeInsets.all(25.0),

@@ -59,9 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('PawClues'),
+        titleSpacing: 0,
+        title: Image(
+          image: AssetImage("assets/images/pawcluesletra.png"),
+          width: 120,
+          height: 120,
+        ),
+        automaticallyImplyLeading: false,
       ),
       endDrawer: DrawerNav(),
       body: Principal(),

@@ -96,6 +96,7 @@ class SearchPetFormState extends State<SearchPetForm> {
         key: _formKey,
         appBar: AppBar(
           title: Text('PawClues'),
+          automaticallyImplyLeading: false,
         ),
         endDrawer: const DrawerNav(),
         body: Container(
