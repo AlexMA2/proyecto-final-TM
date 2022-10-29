@@ -86,7 +86,7 @@ class _DrawerNavState extends State<DrawerNav> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SearchPetForm(title: 'Buscar')),
+                    MaterialPageRoute(builder: (context) => const SearchPetForm()),
                   );
                 },
               ),

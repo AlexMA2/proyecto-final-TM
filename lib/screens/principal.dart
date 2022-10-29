@@ -4,8 +4,8 @@ import 'package:proyecto_final_tm/screens/Principal/Footer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Principal extends StatefulWidget {
-  const Principal({super.key});
-
+  const Principal({super.key, this.title = "PawClues"});
+  final String title;
   @override
   State<Principal> createState() => _PrincipalState();
 }
@@ -208,6 +208,7 @@ class _PrincipalState extends State<Principal> {
             ],
         )],
       )
+
     );
   }
 
