@@ -82,6 +82,12 @@ class SearchPetFormState extends State<SearchPetForm> {
                       onPressed: () {
                         pickImage();
                       }),
+                  if(image != null)
+                    SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: Image.file(image!),
+                    ),
                   TextFormField(
                     style: textStyle,
                     decoration: const InputDecoration(

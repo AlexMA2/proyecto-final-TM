@@ -1,10 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/meedu.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:proyecto_final_tm/app/domain/repositories/authentication_repository.dart';
 import 'package:proyecto_final_tm/main.dart';
-import 'package:proyecto_final_tm/screens/Principal.dart';
 
 import 'package:proyecto_final_tm/screens/ReportAnimal.dart';
 import 'package:proyecto_final_tm/screens/SearchPet.dart';
 import 'package:proyecto_final_tm/screens/MatchPets.dart';
+import 'package:proyecto_final_tm/screens/principal.dart';
+
+import '../app/ui/routes/routes.dart';
 class DrawerNav extends StatefulWidget {
   const DrawerNav({super.key});
 
@@ -65,8 +71,7 @@ class _DrawerNavState extends State<DrawerNav> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const
-                    MyHomePage(title: 'Principal')),
+                    MaterialPageRoute(builder: (context) => const Principal())
                     // MyHomePage(title: 'Principal')),
                   );
                 },
@@ -126,6 +131,26 @@ class _DrawerNavState extends State<DrawerNav> {
                   );
                 },
               ),
+              Container(
+                color: Color.fromARGB(255, 109, 16, 20),
+                width: 20,
+                height: 50,
+                child: CupertinoButton(
+                  // color: const Color.fromARGB(255, 109, 16, 20),
+                  child: const Text('Salir',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18
+                    )
+                  ),
+                  onPressed: () async {
+                    await Get.find<AuthenticationRepository>().signOut();
+                    router.pushNamedAndRemoveUntil(Routes.LOGIN);
+                  }
+                ),
+              )
+              
             ],
           ),
           )

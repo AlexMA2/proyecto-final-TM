@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/screens/Principal/Footer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 
 class Principal extends StatefulWidget {
   const Principal({super.key, this.title = "PawClues"});
@@ -48,6 +50,16 @@ class _PrincipalState extends State<Principal> {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 243, 176, 1),
+      endDrawer: const DrawerNav(),
+      appBar: AppBar(
+        titleSpacing: 0,
+        title: const Image(
+          image: AssetImage("assets/images/pawcluesletra.png"),
+          width: 120,
+          height: 120,
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body: ListView(
         children: [
           Column(

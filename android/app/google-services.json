@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "570498541456",
+    "project_id": "pawclues",
+    "storage_bucket": "pawclues.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570498541456:android:2f10e33ad8135e773eb515",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_final_tm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570498541456-s4ktl22km8b8mm1p9s53pcoc9omv4lb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASaVr8WgvFakuWSct9f0abZvKTeo70qgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570498541456-s4ktl22km8b8mm1p9s53pcoc9omv4lb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

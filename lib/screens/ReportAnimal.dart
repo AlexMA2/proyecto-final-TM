@@ -7,6 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/constants/SelectorsData.dart';
 
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:proyecto_final_tm/theme/PawCluesInputTheme.dart';
 import 'package:proyecto_final_tm/widgets/FormTitle.dart';
@@ -31,10 +34,19 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
   File? image;
   Future pickImage() async {
     try {
+      print('seleccionar imagen');
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
+      print('la imagen');
+      print(image);
+
+      // final StorageReference storageReference = FirebaseStorage().ref().child('/imagenes');
+
+      // final StorageUploadTask uploadTask = storageReference.putData(image);
+
+      // await uploadTask.onComplete;
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
@@ -59,9 +71,14 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
 
         backgroundColor: const Color.fromRGBO(255, 243, 176, 1),
         appBar: AppBar(
-          title: const Text('PawClues'),
-          automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: const Image(
+          image: AssetImage("assets/images/pawcluesletra.png"),
+          width: 120,
+          height: 120,
         ),
+        automaticallyImplyLeading: false,
+      ),
         endDrawer: DrawerNav(),
         body: Form(
           key: _formKey,
@@ -175,6 +192,7 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                                     content:
                                         Text('El formulario es incorrecto')))
                           }
+
                       },
                   label: 'Reportar'),
             ]
