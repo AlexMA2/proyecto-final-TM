@@ -1,20 +1,123 @@
 import 'dart:io';
 
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:proyecto_final_tm/app/domain/inputs/post_report.dart';
+
 
 import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/constants/SelectorsData.dart';
-
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:proyecto_final_tm/theme/PawCluesInputTheme.dart';
 import 'package:proyecto_final_tm/widgets/FormTitle.dart';
 import 'package:proyecto_final_tm/widgets/Selector.dart';
 import 'package:proyecto_final_tm/widgets/SubmitButton.dart';
+
+
+Future<Razas> fetchRazas() async {
+  final response = await http
+      .get(Uri.parse('http://192.168.1.10:8000/apiRazas'));
+
+  if (response.statusCode == 200) {
+    
+    print(response.body);
+    return Razas.fromJson(jsonDecode(response.body));
+
+  } else {
+    throw Exception('Error al traer las razas');
+  }
+}
+Future<Distritos> fetchDistritos() async {
+  final response = await http
+      .get(Uri.parse('http://192.168.1.10:8000/apiDistritos'));
+
+  if (response.statusCode == 200) {
+    
+    print(response.body);
+    return Distritos.fromJson(jsonDecode(response.body));
+    
+  } else {
+    throw Exception('Error al traer los distritos');
+  }
+}
+
+
+Future<String> postEnvio(String colorPelo, int anios, int meses, int razaid, bool encontrado, int usuid, File imagen) async {
+  final response = await http.post(
+    Uri.parse('http://192.168.1.10:8000/apipost'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      'nombre': 'ManuelCruz',
+      'colorPelo':'colorPelo',
+      'Años':anios,
+      'Meses':meses,
+      'RazaId':razaid,
+      'encontrada':false,
+      'usuarioId':usuid,
+      'file':imagen.readAsBytesSync(),
+    }),
+  );
+
+  print(response);
+
+  if (response.statusCode == 201) {
+    
+    print(response.body);
+
+    return 'OK';
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to create album.');
+  }
+}
+
+class Razas {
+  final int razaId;
+  final String nombreRaza;
+  final String imagen;
+
+  const Razas({
+    required this.razaId,
+    required this.nombreRaza,
+    required this.imagen,
+  });
+
+  factory Razas.fromJson(Map<String, dynamic> json) {
+    return Razas(
+      razaId    : json['razaId'],
+      nombreRaza: json['nombreRaza'],
+      imagen    : json['imagen'],
+    );
+  }
+}
+
+class Distritos {
+  final int distritoId;
+  final String nombreDistrito;
+
+  const Distritos({
+    required this.distritoId,
+    required this.nombreDistrito,
+  });
+
+  factory Distritos.fromJson(Map<String, dynamic> json) {
+    return Distritos(
+      distritoId    : json['distritoId'],
+      nombreDistrito: json['nombreDistrito'],
+    );
+  }
+}
+
+
+
 
 class ReportAnimalForm extends StatefulWidget {
   const ReportAnimalForm({super.key});
@@ -22,15 +125,15 @@ class ReportAnimalForm extends StatefulWidget {
   State<ReportAnimalForm> createState() => ReportAnimalFormState();
 }
 
-// Define una clase de estado correspondiente. Esta clase contendrá los datos
-// relacionados con el formulario.
+
 class ReportAnimalFormState extends State<ReportAnimalForm> {
-  // Crea una clave global que identificará de manera única el widget Form
-  // y nos permita validar el formulario
-  //
+
+  @override
+  void initState(){
+    super.initState();
+  }
 
   final _formKey = GlobalKey<FormState>();
-  // Nota: Esto es un GlobalKey<FormState>, no un GlobalKey<MyCustomFormState>!
   File? image;
   Future pickImage() async {
     try {
@@ -41,12 +144,6 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
       setState(() => this.image = imageTemp);
       print('la imagen');
       print(image);
-
-      // final StorageReference storageReference = FirebaseStorage().ref().child('/imagenes');
-
-      // final StorageUploadTask uploadTask = storageReference.putData(image);
-
-      // await uploadTask.onComplete;
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
@@ -61,7 +158,6 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
   String phoneNumber = '';
   @override
   Widget build(BuildContext context) {
-    // Crea un widget Form usando el _formKey que creamos anteriormente
 
     return MaterialApp(
       theme: ThemeData(
@@ -171,9 +267,12 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                     hintText: "Número de Contacto"),
               ),
               SubmitButton(
-                  onPressed: () => {
+                  onPressed: () => 
+                  {
                         if (_formKey.currentState!.validate())
                           {
+                          // print(petColor)
+                          // postEnvio(petColor, years, months, 1, false,1 , image!)
                             _formKey.currentState!.save(),
                             Navigator.pushNamed(context, '/matching',
                                 arguments: FormValueArgument(
@@ -193,7 +292,8 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                                         Text('El formulario es incorrecto')))
                           }
 
-                      },
+                      }
+                      ,
                   label: 'Reportar'),
             ]
                 .map((child) => Padding(

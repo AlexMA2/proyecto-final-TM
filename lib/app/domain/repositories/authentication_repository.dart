@@ -10,10 +10,5 @@ abstract class AuthenticationRepository{
   Future<void> signOut();
 
   //Funcion para pasarle correo y contraseña
-  Future<SignInResponse> signInWithEmailAndPassword(
-    String email,
-    String password  
-  );
-
+  Future<SignInResponse> signInWithEmailAndPassword(String email,String password);
 }
-

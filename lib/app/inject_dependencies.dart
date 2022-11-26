@@ -18,5 +18,4 @@ void injectDependencies(){
     () => SignUpRepositoryImpl(FirebaseAuth.instance),
   
   );
-
 }

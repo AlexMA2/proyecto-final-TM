@@ -5,6 +5,10 @@ import 'package:flutter_meedu/ui.dart';
 import 'package:proyecto_final_tm/app/domain/repositories/authentication_repository.dart';
 import 'package:proyecto_final_tm/main.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:proyecto_final_tm/screens/ReportAnimal.dart';
 import 'package:proyecto_final_tm/screens/SearchPet.dart';
 import 'package:proyecto_final_tm/screens/MatchPets.dart';
@@ -12,11 +16,47 @@ import 'package:proyecto_final_tm/screens/principal.dart';
 
 import '../app/ui/routes/routes.dart';
 class DrawerNav extends StatefulWidget {
+
   const DrawerNav({super.key});
 
     @override
     State<DrawerNav> createState() => _DrawerNavState();
 }
+
+Future<Post> fetchPost() async {
+  
+  String urlDistritos = 'https://jsonplaceholder.typicode.com/posts/1';
+
+  final response =
+      await http.get(Uri.parse(urlDistritos));
+
+  if (response.statusCode == 200) {
+    // Si la llamada al servidor fue exitosa, analiza el JSON
+    // return Post.fromJson(json.decode(response.body));
+    return Post.fromJson(json.decode(response.body));
+  } else {
+    throw Exception('Failed to load post');
+  }
+}
+
+class Post {
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
+
+  Post({required this.userId, required this.id, required this.title, required this.body});
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  }
+}
+
 
 class _DrawerNavState extends State<DrawerNav> {
     @override
@@ -109,7 +149,7 @@ class _DrawerNavState extends State<DrawerNav> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ReportAnimalForm()),
+                    MaterialPageRoute(builder: (context) => ReportAnimalForm()),
                   );
                 },
               ),

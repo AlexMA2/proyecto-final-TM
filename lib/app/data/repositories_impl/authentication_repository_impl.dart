@@ -16,7 +16,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final Completer<void> _completer = Completer();
 
   AuthenticationRepositoryImpl(this._auth){
-    print('emoji');
     _init();
   }  
   @override
@@ -56,5 +55,4 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return SignInResponse(stringToSignUpError(e.code), null);
     }
   }
-
 }
