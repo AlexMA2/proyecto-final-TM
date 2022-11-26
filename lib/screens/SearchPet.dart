@@ -14,7 +14,8 @@ import 'package:proyecto_final_tm/widgets/SubmitButton.dart';
 import 'MatchPets.dart';
 import 'ReportAnimal.dart';
 import 'package:proyecto_final_tm/theme/PawCluesInputTheme.dart';
-
+import 'package:proyecto_final_tm/services/RazaService.dart' as razaService;
+import 'package:proyecto_final_tm/services/DistritoService.dart' as distritoService;
 class SearchPetForm extends StatefulWidget {
   const SearchPetForm({super.key});
 
@@ -50,6 +51,50 @@ class SearchPetFormState extends State<SearchPetForm> {
   int years = 0;
   int months = 0;
   String phoneNumber = '';
+
+  List<String> razaPerros = [];
+  List<String> listaDistritos = [];
+
+  Future<void> _getRazas() async  {
+    try {
+      List<String> data = [];
+      final response = await razaService.getAll();
+
+      for(var raza in response) {
+        data.add(raza["nombreRaza"]);
+      }
+      razaPerros = data;
+      selectedValueDogBreed = data.first;
+    } catch (e){
+      print(e);
+      razaPerros = [];
+    }
+  }
+
+  Future<void> _getDistritos() async  {
+    try {
+      List<String> data = [];
+      final response = await razaService.getAll();
+
+      for(var raza in response) {
+        data.add(raza["nombreDistrito"]);
+      }
+      listaDistritos = data;
+      selectedValueDistrictList = data.first;
+    } catch (e){
+      print(e);
+      listaDistritos = [];
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("hola");
+    _getRazas();
+    _getDistritos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,13 +190,13 @@ class SearchPetFormState extends State<SearchPetForm> {
                     ],
                   ),
                   Selector(
-                    values: razas_perros,
+                    values: razaPerros,
                     valueSelected: selectedValueDogBreed,
                     onChange: (value) =>
                         {setState(() => selectedValueDogBreed = value)},
                   ),
                   Selector(
-                    values: lista_distritos,
+                    values: listaDistritos,
                     valueSelected: selectedValueDistrictList,
                     onChange: (value) =>
                         {setState(() => selectedValueDistrictList = value)},
