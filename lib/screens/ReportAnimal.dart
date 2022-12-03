@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'dart:async';
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proyecto_final_tm/app/domain/inputs/post_report.dart';
 
@@ -32,6 +34,7 @@ Future<Razas> fetchRazas() async {
     throw Exception('Error al traer las razas');
   }
 }
+
 Future<Distritos> fetchDistritos() async {
   final response = await http
       .get(Uri.parse('http://192.168.1.10:8000/apiDistritos'));
@@ -46,36 +49,37 @@ Future<Distritos> fetchDistritos() async {
   }
 }
 
-
 Future<String> postEnvio(String colorPelo, int anios, int meses, int razaid, bool encontrado, int usuid, File imagen) async {
-  final response = await http.post(
-    Uri.parse('http://192.168.1.10:8000/apipost'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, dynamic>{
-      'nombre': 'ManuelCruz',
-      'colorPelo':'colorPelo',
-      'Años':anios,
-      'Meses':meses,
-      'RazaId':razaid,
-      'encontrada':false,
-      'usuarioId':usuid,
-      'file':imagen.readAsBytesSync(),
-    }),
-  );
 
-  print(response);
+  var bytesImage = await imagen.readAsBytes();
 
-  if (response.statusCode == 201) {
-    
-    print(response.body);
+  var request =  http.MultipartRequest(
+        'POST', Uri.parse('https://2d99-190-236-35-39.sa.ngrok.io/api/Mascota')
 
-    return 'OK';
-  } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create album.');
+      );
+      
+  request.fields['ColorPelo'] = 'DesdeElForm';
+  request.fields['Anios'] = 2.toString();
+  request.fields['Meses'] = 3.toString();
+  request.fields['RazaId'] = 1.toString();
+  request.fields['Encontrada'] = false.toString();
+  request.fields['UsuarioId'] = 1.toString();
+  request.files.add(http.MultipartFile.fromBytes(
+    'file',
+    bytesImage,
+    filename: 'some-file-name.jpg',
+    contentType: MediaType("image", "jpg"),
+      )
+          );
+  var response = await request.send();
+  final res = await http.Response.fromStream(response);
+
+  if(response.statusCode == 200){
+    print(res.body);
+    return 'Ok';
+  }else{
+    print('Ha ocurrido un error');
+    return 'Fallo';
   }
 }
 
@@ -271,18 +275,19 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                   {
                         if (_formKey.currentState!.validate())
                           {
-                          // print(petColor)
-                          // postEnvio(petColor, years, months, 1, false,1 , image!)
                             _formKey.currentState!.save(),
-                            Navigator.pushNamed(context, '/matching',
-                                arguments: FormValueArgument(
-                                    image: image!,
-                                    district: selectedValueDistrictList,
-                                    dogBreed: selectedValueDogBreed,
-                                    years: years,
-                                    months: months,
-                                    petColor: petColor,
-                                    phoneNumber: phoneNumber))
+
+                            postEnvio('a', 2, 3, 1, false, 1, image!)
+                            // print(image)
+                            // Navigator.pushNamed(context, '/matching',
+                            //     arguments: FormValueArgument(
+                                    // image: image!,
+                                    // district: selectedValueDistrictList,
+                                    // dogBreed: selectedValueDogBreed,
+                                    // years: years,
+                                    // months: months,
+                                    // petColor: petColor,
+                                    // phoneNumber: phoneNumber))
                           }
                         else
                           {

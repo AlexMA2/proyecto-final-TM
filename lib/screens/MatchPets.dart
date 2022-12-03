@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'dart:async';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/screens/MatchPets/MatchPet.dart';
@@ -12,6 +15,21 @@ class MatchPets extends StatefulWidget {
   @override
   State<MatchPets> createState() => _MatchPetsState();
 }
+
+Future<Mascotas> fetchMascotas() async {
+
+  final response = await http
+      .get(Uri.parse('https://09ec-190-236-35-34.sa.ngrok.io/api/Mascota'));
+
+  if (response.statusCode == 200) {
+    
+    return Mascotas.fromJson(jsonDecode(response.body));
+    
+  } else {
+    throw Exception('Error al traer las mascotas');
+  }
+}
+
 
 class Quote {
 
@@ -26,10 +44,57 @@ class Quote {
   });
 }
 
+class Mascotas {
+  final int? mascotaId;
+  final String? colorPelo;
+  final int? anios;
+  final int? meses;
+  final String? imagen;
+  final int? razaId;
+  final int? usuarioId;
+  final bool? encontrada;
+
+  const Mascotas({
+    required this.mascotaId,
+    required this.colorPelo,
+    required this.anios,
+    required this.meses,
+    required this.imagen,
+    required this.razaId,
+    required this.usuarioId,
+    required this.encontrada
+  });
+
+  factory Mascotas.fromJson(List<dynamic> json) {
+    return Mascotas(
+      mascotaId   : json[0]['mascotaId'],
+      colorPelo   : json[0]['colorPelo'],
+      anios       : json[0]['anios'],
+      meses       : json[0]['meses'],
+      imagen      : json[0]['imagen'],
+      razaId      : json[0]['razaId'],
+      usuarioId   : json[0]['usuarioId'],
+      encontrada  : json[0]['encontrada'],
+    );
+  }
+}
+
 class _MatchPetsState extends State<MatchPets> {
+
+  late Future<Mascotas> futureMascotas;
+  List<String> mascotasfetch = []; 
+
+  @override
+  void initState() {
+    super.initState();
+    futureMascotas = fetchMascotas();
+
+    
+    print(futureMascotas);
+  }
+
   @override
   Widget build(BuildContext context) {
-
 
     List<Quote> matchPerros = [
       Quote( imagen: 'https://estaticos.muyinteresante.es/uploads/images/gallery/6124cf315cafe8c3101f8bab/perro_redes.jpg', distrito: 'Comas', direccion: 'A la altura de la RENIEC, junto al emolientero'),

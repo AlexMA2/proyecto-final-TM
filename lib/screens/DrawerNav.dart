@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:proyecto_final_tm/app/domain/repositories/authentication_repository.dart';
+import 'package:proyecto_final_tm/app/ui/pages/mascotas/mascotas_page.dart';
 import 'package:proyecto_final_tm/main.dart';
 
 import 'dart:async';
@@ -118,6 +119,25 @@ class _DrawerNavState extends State<DrawerNav> {
               ),
               ListTile(
                 leading: const Icon(
+                    Icons.pets,
+                    color: Colors.black,
+                    size: 30,
+                    
+                ),
+                title: const Text('Mascotas',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18
+                  ),),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MascotasPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(
                     Icons.search,
                     color: Colors.black,
                     size: 30,
@@ -155,7 +175,7 @@ class _DrawerNavState extends State<DrawerNav> {
               ),
               ListTile(
                 leading: const Icon(
-                    Icons.pets,
+                    Icons.gps_fixed,
                     color: Colors.black,
                     size: 30,
                 ),
