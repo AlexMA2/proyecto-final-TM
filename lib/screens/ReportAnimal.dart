@@ -9,11 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:proyecto_final_tm/app/domain/inputs/post_report.dart';
-
+import 'package:proyecto_final_tm/models/Raza.dart';
 
 import 'package:proyecto_final_tm/screens/DrawerNav.dart';
 import 'package:proyecto_final_tm/constants/SelectorsData.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+import 'package:proyecto_final_tm/services/RazaService.dart' as razaService;
+import 'package:proyecto_final_tm/services/DistritoService.dart' as distritoService;
 
 import 'package:proyecto_final_tm/theme/PawCluesInputTheme.dart';
 import 'package:proyecto_final_tm/widgets/FormTitle.dart';
@@ -132,11 +138,6 @@ class ReportAnimalForm extends StatefulWidget {
 
 class ReportAnimalFormState extends State<ReportAnimalForm> {
 
-  @override
-  void initState(){
-    super.initState();
-  }
-
   final _formKey = GlobalKey<FormState>();
   File? image;
   Future pickImage() async {
@@ -153,13 +154,60 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
     }
   }
 
+
+
   final textStyle = const TextStyle(color: Colors.black);
-  String selectedValueDogBreed = razas_perros.first;
-  String selectedValueDistrictList = lista_distritos.first;
+  String selectedValueDogBreed = 'Peoe';
+  String selectedValueDistrictList = '';
   String petColor = '';
   int years = 0;
   int months = 0;
   String phoneNumber = '';
+
+  List<String> razaPerros = [];
+  List<String> listaDistritos = [];
+
+  Future<void> _getRazas() async  {
+    try {
+      List<String> data = [];
+      final response = await razaService.getAll();
+
+      for(var raza in response) {
+        data.add(raza["nombreRaza"]);
+      }
+      razaPerros = data;
+      selectedValueDogBreed = data.first;
+    } catch (e){
+      print(e);
+      razaPerros = [];
+    }
+  }
+
+  Future<void> _getDistritos() async  {
+    try {
+      List<String> data = [];
+      final response = await distritoService.getAll();
+
+      for(var raza in response) {
+        data.add(raza["nombreDistrito"]);
+      }
+      listaDistritos = data;
+      selectedValueDistrictList = data.first;
+    } catch (e){
+      print(e);
+      listaDistritos = [];
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("hola");
+    _getRazas();
+    _getDistritos();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -252,13 +300,13 @@ class ReportAnimalFormState extends State<ReportAnimalForm> {
                 ],
               ),
               Selector(
-                values: razas_perros,
+                values: razaPerros,
                 valueSelected: selectedValueDogBreed,
                 onChange: (value) =>
                     {setState(() => selectedValueDogBreed = value)},
               ),
               Selector(
-                values: lista_distritos,
+                values: listaDistritos,
                 valueSelected: selectedValueDistrictList,
                 onChange: (value) =>
                     {setState(() => selectedValueDistrictList = value)},
